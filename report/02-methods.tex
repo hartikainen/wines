@@ -44,11 +44,15 @@ where $k_{i}$ is the number of points belonging to class $\omega_{i}$ and k near
 Thus, in k-NN classifier, the input point is assigned to the class with the most points among the neighbors of the input.
 
 In spite of simplicity, the k-NN classifier is very robust. It is, however, very reliant on the
-training data, computationally heavy, and unreliable with higher dimensional data. We believe that the k-NN classifier is suitable for the wine classification task. The size of the training dataset seems large enough to produce meaningful results, and at the same time computationally manageable. Data pre-processing techniques might be needed to handle the dimensionality and other problems related to the similarity measure. These techniques are discussed in chapters \ref{PCA chapteri}.
+training data, computationally heavy, and unreliable with higher dimensional data. We believe that the k-NN classifier is suitable for the wine classification task. The size of the training dataset seems large enough to produce meaningful results, and at the same time computationally manageable even with naive implementation. Data pre-processing techniques might be needed to handle the dimensionality and other problems related to the similarity measure. These techniques are discussed in chapters \ref{PCA chapteri}.
 
 TODO:
-- zero mean unit variance is required for the euclidean distances!
-- curse of dimensionality
+\begin{itemize}
+\item upper bound for the error
+\item choice of k? cross-validation
+\item zero mean unit variance is required for the euclidean distances!
+\item curse of dimensionality
+\end{itemize}
 
 
 %%% Local Variables:
