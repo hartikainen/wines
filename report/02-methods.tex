@@ -1,4 +1,55 @@
-\lipsum[5-9]
+\subsection{k-Nearest Neighbor Classifier}
+The k-Nearest Neighbor (k-NN) classifier is a nonparametric classification technique, which is (generally) used under the assumption that the underlying distribution of the data is unknown. With parametric classification methods, predictions of the unseen data is based on the \emph{fixed parameter models} constructed from the input data. With nonparametric methods, however, the parameter count and nature vary together with the changing data, and the only assumption we can make is the similarity between the input and output data. Various nonparametric methods are available for different machine learning tasks, e.g. classification and regression. \cite{alpaydin:2004:introduction} % p 163
+
+Nonparametric classification algorithms make the decision based the \emph{similarities} between the points to be classified and training data. The definition of the similarity may change between the classification task. One example of similarity measure is the euclidean distance between two points: the closer the points the more similar they are.
+
+The k-NN classifier is a special case of a more general nonparametric classifier. Let us first consider the general nonparametric classification problem. Given a set of N training points  $\mathbf{X} = \{x^{t}\}, t=1...N$, each belonging to a class $\omega_{i}$, we want to assign a point $\mathbf{x} \notin \mathbf{X}$ to one of those classes. The nonparametric class-conditional density estimate $\hat{p}(\mathbf{x} | \omega_{i})$ for class $\omega_{i}$ is given as
+
+\begin{equation*}
+  \label{eq:1}
+  \hat{p}(\mathbf{x} | \omega_{i}) = \frac{1}{N_{i}h^{d}} \sum_{t=1}^{N}K(\frac{\mathbf{x} - \mathbf{x}^{t}}{h})\mathbf{r}_{i}^{t}
+\end{equation*}
+
+where $\mathbf{r}_{i}^{t}$ is 1 when $\mathbf{x^t} \in \omega_{i}$, or 0 otherwise, and $N_{i}$ is the number of data points belonging to $\omega_{i}$. Now, as the maximum likelihood estimate of the prior density $\hat{P}(\omega_{i}) = \frac{N_{i}}{N}$, the discriminant function can be written as
+
+\begin{equation*}
+  \label{eq:2}
+  g_{i}(\mathbf{x}) = \hat{p}(\mathbf{x}|\omega_{i}) \hat{P}(\omega_{i})
+                    = \frac{1}{Nh^{d}} \sum_{t=1}^{N}K(\frac{\mathbf{x} - \mathbf{x}^{t}}{h})\mathbf{r}_{i}^{t}
+\end{equation*}
+
+And, since the point is assigned to the class $\omega_{i}$ that maximizes the discriminant, we can ignore the multiplier $1/(Nh^{d})$, and end up with
+
+\begin{equation}
+  \label{eq:3}
+  g_{i}(\mathbf{x}) = \sum_{t=1}^{N}K(\frac{\mathbf{x} - \mathbf{x}^{t}}{h})\mathbf{r}_{i}^{t}
+\end{equation}
+
+The intuition behind \eqref{eq:3}, is that each of the training point $\mathbf{x}^t, t = 1...N$, increases the weight of the classified point $\mathbf{x}$, belonging to, and only to, its own class by $K(\frac{\mathbf{x} - \mathbf{x}^{t}}{h})$. The function $K(\cdot)$ is called a kernel function.
+
+Now, if we limit the estimation to only the k nearest data points, we get
+
+\begin{equation*}
+  \label{eq:4}
+  \hat{p}(\mathbf{x} | \omega_{i}) = \frac{k_{i}}{N_{i}V^{k}(\mathbf{x})}
+\end{equation*}
+
+where $k_{i}$ is the number of points belonging to class $\omega_{i}$ and k nearest points of $\mathbf{x}$. $V^{k}(\mathbf{x})$ is the volume of a d-dimensional hypersphere our $\mathbf{x}$. Using bayesian formula, we get
+
+\begin{equation*}
+  \label{eq:5}
+  \hat{P}(\omega_{i}|\mathbf{x}) = \frac{\hat{p}(\mathbf{x}|\omega_{i})\hat{P}(\omega_{i})}{\hat{p}(\mathbf{x})} = \frac{k_i}{k}
+\end{equation*}
+
+Thus, in k-NN classifier, the input point is assigned to the class with the most points among the neighbors of the input.
+
+In spite of simplicity, the k-NN classifier is very robust. It is, however, very reliant on the
+training data, computationally heavy, and unreliable with higher dimensional data. We believe that the k-NN classifier is suitable for the wine classification task. The size of the training dataset seems large enough to produce meaningful results, and at the same time computationally manageable. Data pre-processing techniques might be needed to handle the dimensionality and other problems related to the similarity measure. These techniques are discussed in chapters \ref{PCA chapteri}.
+
+TODO:
+- zero mean unit variance is required for the euclidean distances!
+- curse of dimensionality
+
 
 %%% Local Variables:
 %%% mode: latex
