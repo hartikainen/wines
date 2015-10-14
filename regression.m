@@ -11,9 +11,6 @@ test_data_table     = readtable('test_data.csv');
 training_data = table2array(training_data_table(:,1:12));
 test_data = table2array(test_data_table(:,1:12));
 
-
-%%
-
 N_train = size(training_data, 1);
 
 dim_data = 11;
@@ -52,7 +49,13 @@ n_test_data = size(test_data,1);
 basis_funs_test_data = ones(n_test_data, (11 + 1) );
 
 for i = 1:dim_data
-    basis_funs_test_data(:, (i+1) ) = test_data(:,i);
+    % test_data has id as the first column
+    basis_funs_test_data(:, (i+1) ) = test_data(:,i+1);
 end
 
-test_preds =  basis_funs_test_data(:, 1:11) * betas_tmp;
+test_preds =  round(basis_funs_test_data(:, 1:11) * betas_tmp);
+
+f = fopen('output','w');
+fprintf(f,'id,quality\n');
+outputM = [test_data(:,1) test_preds]';
+fprintf(f,'%d,%d\n',outputM);
