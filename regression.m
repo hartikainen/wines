@@ -1,8 +1,5 @@
 clear all; close all;
 
-% assume that N_train is divisible by FOLDK
-FOLDK = 10;
-
 training_data_table = readtable('training_data.csv');
 test_data_table     = readtable('test_data.csv');
 
@@ -18,8 +15,6 @@ perm = randperm(N_train);
 % linear regressors
 basis_funs = ones(N_train, (data_dim+1));
 basis_funs(:, 2:end) = training_data(:, 1:data_dim);
-
-valid_preds = zeros(N_train,1);
 
 betas_tmp = basis_funs \ training_data(:, 12);
 
