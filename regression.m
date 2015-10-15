@@ -1,5 +1,3 @@
-poly_deg = 1;
-
 clear all; close all;
 
 % assume that N_train is divisible by FOLDK
