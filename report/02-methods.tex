@@ -67,6 +67,14 @@ In linear regression the relationship between the input variables $$\mathbf{X}$$
 When doing regression with single input variable polynomial basis functions are often used. For more than one input variable polynomial regression is rarely used, instead linear basis functions are used. \cite{alpaydin:2004:introduction}
 
 \subsection{Extreme Learning Machine}
+Artificial neural networks are a family of machine learning models which consist of multiple locally interconnected, simple computing units called neurons, that together form a network type structure. The neurons can be used to form a non-linear mapping from the input space and dividing a complex problem into simpler subproblems.~\cite{haykin:2009:neural-networks}
+
+The output of the network is adjusted by changing the synaptic weights between the neurons. To obtain the desired behavior of the network, the  weights are learned by a learning algorithm.~\cite{haykin:2009:neural-networks}
+
+Extreme Learning Machines are neural network constructs with two special properties. First, they are single layer feedforward networks, meaning that the neurons connection do not form cycles. Secondly, the weights of the hidden layer are randomly assigned and frozen. These properties have interesting consequenses. The learning algorithm of the weights reduces to a single step, essentially amounting to finding a solution for a linear system. While this results in learning thousands of times faster than traditional backpropagation algorithm~\cite{haykin:2009:neural-networks}, these models can still produce good generalization performance and learn non-trivial, non-linear mappings between the inputs and outputs.~\cite{huang:2006:elm}
+
+Despite of the intriguing results shown in the original paper~\cite{huang:2006:elm}, there has been some controversy in the machine learning community, regarding the extreme learning machines and its author.~\cite{reddit:2015:elm-controversy}
+
 \subsection{Support Vector Machine}
 \subsection{TreeBagger}
 
