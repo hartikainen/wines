@@ -77,6 +77,11 @@ Despite the intriguing results shown in the original paper~\cite{huang:2006:elm}
 
 \subsection{Support Vector Machine}
 \subsection{TreeBagger}
+One method for creating well performing learners is to combine multiple weaker learners in a way that improves the robustness of the model \cite{alpaydin:2004:introduction}. Combinations of a large number of simpler learners have performed well in machine learning competitions \cite{kaggle:2015:winner}. TreeBagger is a Matlab tool that combines decision trees using bootstrap aggregation \cite{matlab:2015:treebagger}.
+
+The base learning algorithm used by TreeBagger is decision tree. Decision trees are a supervised nonparametric learning method. Decision trees represent the hypothesis by a tree where each leaf node corresponds to an area in the input space. The tree branches are binary decisions. The learning algorithm uses a heuristic method to select the best feature to branch by. The key idea of learning decision trees is to take advantage of the recursive property of trees that a new tree is created by attaching a tree to a leaf of another tree. \cite{alpaydin:2004:introduction}
+
+The empirical error approximates the generalization error the better the larger the dataset is. Because the size of the real training data is limited, the training set is enlarged artificially. One way to artificially enlarge the dataset is to use the histogram of the training data as the ``true'' dataset. Using the histogram for enlarging the dataset is called bootstrap aggregation \cite{breiman:1996:bagging}. TreeBagger uses bagging to create the training datasets for the decision trees.
 
 \subsection{Data Pre-processing}
   - zero mean unit variance
