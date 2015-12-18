@@ -57,6 +57,15 @@ TODO:
 \end{itemize}
 
 \subsection{Linear Regression}
+In linear regression the relationship between the input variables $$\mathbf{X}$$ and the predicted variable $$\mathbf{y}$$ is modeled using a linear combination of basis functions \cite{alpaydin:2004:introduction}. The mathematical expression describing the relationship of the input variables and the predicted variable is given in the equation \ref{eq:666} where input variables are denoted by $$\mathbf{X}$$, the predicted variable is expressed as a function of input variables $$g_{i}(\mathbf{X})$$, $$\phi$$ are the basis functions and $$w_{j}$$ are the weights for each basis function. The closed form solution for the weights is found using linear algebra. The least squares solution for the weights is given by $$\mathbold{w = y\Phi^{\dagger}}$$ where $$\Phi$$ is a matrix with elements $$\phi(x^{t})$$ and $$\mathbf{\Phi^{\dagger}}$$ denotes the pseudo inverse of the matrix \cite{alpaydin:2004:introduction}.
+
+\begin{equation}
+    \label{eq:666}
+    g_{i}(\mathbf{X}) = \sum^{k}_{j=1}{w_{j}\phi_{ij}(\mathbf{X})}
+\end{equation}
+
+When doing regression with single input variable polynomial basis functions are often used. For more than one input variable polynomial regression is rarely used, instead linear basis functions are used. \cite{alpaydin:2004:introduction}
+
 \subsection{Extreme Learning Machine}
 \subsection{Support Vector Machine}
 \subsection{TreeBagger}
