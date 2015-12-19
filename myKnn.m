@@ -34,7 +34,8 @@ for fold=1:folds
     [d, I] = sort(distances);
     neighbors = I(1:k, :)';
     
-    % for each validation points, find the most frequent classes of the neighbors
+    % for each validation points, find the most frequent classes of the
+    % neighbors
     predicted = mode(Y1(neighbors), 2);
     acc = sum(predicted == Y2) / length(predicted);
     totalAcc = totalAcc + acc;
