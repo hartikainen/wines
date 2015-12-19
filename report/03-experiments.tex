@@ -13,14 +13,21 @@ Support Vector Machines were studied for the classification task. Matlab has a v
 
 Three different kernel functions were used. Quadratic and cubic kernel functions performed poorly compared to the gaussian kernel functions and they were excluded from further experiments. The gaussian kernel functions were studied using by setting the box constraint to 1 and testing the kernel scale $\gamma$ with values in the range 0.1-20.
 
-20-fold cross validation was used for the model selection.
+The data was standardized by centering it to zero mean and unit variance. 20-fold cross validation was used for the model selection.
 
 \subsection{Wine Quality}
+Wine quality prediction was defined as a regression task where a quality rank from 1 to 7 was to be predicted for the white and the red wines. Multivariate linear regression and extreme learning machine algorithms were implemented for the regression task. From the kaggle competition it was learned that better results for the quality prediction task were achieved by treating it as a classification problem. Bootstrap aggregation of decision trees was tested as the classification method.
+
 \subsubsection{Multivariate Linear Regression}
-10-fold cross validation
+Multivariate regression was used to predict the quality labels for the wines. The linear regression model was kept as simple as possible using only linear kernel functions and no data preprocessing. The results were rounded to the nearest integer. With the simplicity as the main goal, there was only one model to test which had 12 parameters that were acquired from the analytical solution for linear regression explained in~\ref{sec:methods}. The implementation of the multivariate linear regression model is given in the appendix~\ref{appendix-b}.
 
 \subsubsection{Bootstrap Aggregation with Decision Trees}
-validation: OOBPrediction
+The Matlab TreeBagger tool was used to create bagged decision trees. The quality prediction was interpreted as a classification task for the experiments using TreeBagger. Regression trees were also tried but they performed poorly compared to the classification models and were excluded from further experiments.
+
+The TreeBagger supports multiple modes of fitting the decision trees and has many parameters for controlling the ensembling of the trees. A cursory overview of the parameter space was conducted by using the Matlab classification toolbox and some manual trials. In the preliminary search for parameters it was found that the default settings of TreeBagger yield the best results and thus further experiments with the various parameters except the number of grown trees and feature selection were omitted.
+
+The feature selection was conducted by trying out all combinations of three or more features. With the final feature selection the number of trees was varied from 1 to 5000. The TreeBagger built-in out-of-bag error (OOBError) was used for model selection. The OOBError computes the misclassification probability for the classification trees in the training data.
+
 \subsubsection{Extreme Learning Machine}
 neuronit: 11 linear neurons, for linear riippuvuus
 nonlinearty: tansig 0 - 1000
