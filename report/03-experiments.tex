@@ -1,5 +1,39 @@
+In the experiments two prediction tasks were studied. The first task was to classify the vinho verde dataset to red and white wines. In the second task wine qualities were approximated with regression. In this section the conducted experiments are described.
+
 \subsection{Wine Type}
+The wine type prediction was a binary classification task with two classes, namely red and white wines. Two classification methods namel k-nearest-neighbor classifier and support vector machines were studied. A k-nearest-neighbor classifier was implemented from scratch. The Matlab implementation of support vector machines was used. The experiments conducted with the two classifiers are described in the following.
+
+\subsubsection{K-Nearest-Neighbor Classifier}
+A K-Nearest-Neighbor classifier was implemented. The implementation details are given in appendix~\ref{appendix-a}. In the model selection phase different parameters were experimented with and the results were validated using 20-fold cross validation. The only preprocessing step for the data was centering, meaning making the data zero mean and unit variance.
+
+The parameter space for a model as simple as kNN classifier is large. To limit the required work and computation time, only the most influential parameters were experimented with. The number of neighbors $k$ was the most influential parameter. Values of $k$ from 1 to 50 were tested. Another parameter that was experimented with was the distance function. Euclidean distance and Minkowski distance were tested.
+
+\subsubsection{Support Vector Machine}
+Support Vector Machines were studied for the classification task. Matlab has a versatile SVM implementation included in the default distribution~\cite{matlab:2015:fitcsvm}. The Matlab SVM implementation has a multitude of parameters to tune and the total parameter space is huge. To help reduce the number of parameters to be tested, the Matlab classification toolbox was used to find coarse parameters.
+
+Three different kernel functions were used. Quadratic and cubic kernel functions performed poorly compared to the gaussian kernel functions and they were excluded from further experiments. The gaussian kernel functions were studied using by setting the box constraint to 1 and testing the kernel scale $\gamma$ with values in the range 0.1-20.
+
+The data was standardized by centering it to zero mean and unit variance. 20-fold cross validation was used for the model selection.
+
 \subsection{Wine Quality}
+Wine quality prediction was defined as a regression task where a quality rank from 1 to 7 was to be predicted for the white and the red wines. Multivariate linear regression and extreme learning machine algorithms were implemented for the regression task. From the kaggle competition it was learned that better results for the quality prediction task were achieved by treating it as a classification problem. Bootstrap aggregation of decision trees was tested as the classification method.
+
+\subsubsection{Multivariate Linear Regression}
+Multivariate regression was used to predict the quality labels for the wines. The linear regression model was kept as simple as possible using only linear kernel functions and no data preprocessing. The results were rounded to the nearest integer. With the simplicity as the main goal, there was only one model to test which had 12 parameters that were acquired from the analytical solution for linear regression explained in~\ref{sec:methods}. The implementation of the multivariate linear regression model is given in the appendix~\ref{appendix-b}.
+
+\subsubsection{Bootstrap Aggregation with Decision Trees}
+The Matlab TreeBagger tool was used to create bagged decision trees. The quality prediction was interpreted as a classification task for the experiments using TreeBagger. Regression trees were also tried but they performed poorly compared to the classification models and were excluded from further experiments.
+
+The TreeBagger supports multiple modes of fitting the decision trees and has many parameters for controlling the ensembling of the trees. A cursory overview of the parameter space was conducted by using the Matlab classification toolbox and some manual trials. In the preliminary search for parameters it was found that the default settings of TreeBagger yield the best results and thus further experiments with the various parameters except the number of grown trees and feature selection were omitted.
+
+The feature selection was conducted by trying out all combinations of three or more features. With the final feature selection the number of trees was varied from 1 to 5000. The TreeBagger built-in out-of-bag error (OOBError) was used for model selection. The OOBError computes the misclassification probability for the classification trees in the training data.
+
+\subsubsection{Extreme Learning Machine}
+Regression with extreme learning machines (ELM) was used for predicting the wine qualities. The ELM was implemented for the experiment by the research group. The ELM implementation is presented in~\ref{appendix-c}.
+
+The ELM implementation has 11 linear neurons for each of the input variables. The hyperbolic tangent sigmoid transfer function, called tansig in matlab~\cite{matlab:2015:tansig}, was used as the nonlinear activation function. ELMs were trained using 0 to 1000 nonlinear neurons. The model selection was conducted using leave-one-out validation.
+
+The data was standardized to zero mean and unit variance for the experiments.
 
 % \begin{table}[H]
 % \caption{My current knowledge of tables}
