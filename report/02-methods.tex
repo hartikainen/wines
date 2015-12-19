@@ -1,5 +1,5 @@
 \label{sec:methods}
-TODO: methods intro
+A couple of different algorithms were trained for both of the prediction tasks. The algorithms used have been discussed on the T-61.3050 - Machine Learning: Basic Principles course with the exception of extreme learning machines. In this section a theoretical overview of the used learning algorithms and other methods used is given. 
 
 \subsection{k-Nearest Neighbor Classifier}
 The k-Nearest Neighbor (k-NN) classifier is a nonparametric classification technique, which is (generally) used under the assumption that the underlying distribution of the data is unknown. With parametric classification methods, predictions of the unseen data is based on the \emph{fixed parameter models} constructed from the input data. With nonparametric methods, however, the parameter count and nature vary together with the changing data, and the only assumption we can make is the similarity between the input and output data. Various nonparametric methods are available for different machine learning tasks, e.g. classification and regression. \cite{alpaydin:2004:introduction} % p 163
@@ -73,7 +73,7 @@ Artificial neural networks are a family of machine learning models which consist
 
 The output of the network is adjusted by changing the synaptic weights between the neurons. To obtain the desired behavior of the network, the  weights are learned by a learning algorithm.~\cite{haykin:2009:neural-networks}
 
-Extreme Learning Machines are neural network constructs with two special properties. First, they are single layer feedforward networks, meaning that the neurons connection do not form cycles. Secondly, the weights of the hidden layer are randomly assigned and frozen. These properties have interesting consequenses. The learning algorithm of the weights reduces to a single step, essentially amounting to finding a solution for a linear system. While this results in learning thousands of times faster than traditional backpropagation algorithm~\cite{haykin:2009:neural-networks}, these models can still produce good generalization performance and learn non-trivial, non-linear mappings between the inputs and outputs.~\cite{huang:2006:elm}
+Extreme Learning Machines are neural network constructs with two special properties. First, they are single layer feedforward networks, meaning that the neurons connection do not form cycles. Secondly, the weights of the hidden layer are randomly assigned and frozen. These properties have interesting consequences. The learning algorithm of the weights reduces to a single step, essentially amounting to finding a solution for a linear system. While this results in learning thousands of times faster than traditional backpropagation algorithm~\cite{haykin:2009:neural-networks}, these models can still produce good generalization performance and learn non-trivial, non-linear mappings between the inputs and outputs.~\cite{huang:2006:elm}
 
 Despite the intriguing results shown in the original paper~\cite{huang:2006:elm}, there has been some controversy in the machine learning community, regarding the extreme learning machines and its author.~\cite{reddit:2015:elm-controversy}
 
@@ -106,11 +106,18 @@ The base learning algorithm used by TreeBagger is decision tree. Decision trees 
 The empirical error approximates the generalization error the better the larger the dataset is. Because the size of the real training data is limited, the training set is enlarged artificially. One way to artificially enlarge the dataset is to use the histogram of the training data as the ``true'' dataset. Using the histogram for enlarging the dataset is called bootstrap aggregation \cite{breiman:1996:bagging}. TreeBagger uses bagging to create the training datasets for the decision trees.
 
 \subsection{Data Pre-processing}
-  - zero mean unit variance
-  - feature selection for TreeBagger
+A crucial part of successful prediction using machine learning methods is to make sure the data is in suitable form for the learning algorithm used. For example algorithms that depend on a measure of distance between the datapoints, k-NN for example, can generalize the data better when the distances are standardized. The distances are standardized by dividing the features by their standard deviations.~\cite{alpaydin:2004:introduction}.
+
+Some learning algorithms benefit from the data being centered around zero. The centering is achieved by subtracting the mean of the data from all of the data vectors.~\cite{alpaydin:2004:introduction}
+
+It is often beneficial to keep the models simple. It is stated that simpler models are more robust on small datasets~\cite{alpaydin:2004:introduction}. Feature selection is one way to reduce model complexity. Feature selection means selecting a subset of the data features for training the predictor. Different methods for feature selection can be used, but they are based on the same idea of repeatedly evaluating validation error on different subsets of features. The subsets can be chosen for example by starting from no features and adding the feature that improves performance the most. One way for feature selection is searching through all the combinations of features but it is often not practical due to large number of features.~\cite{alpaydin:2004:introduction}
 
 \subsection{Model Evaluation}
-  - Cross validation
+To make informed decisions about how to optimize the model parameters and in general how to create good predictors, methods for comparison of the created models are needed. A simple measure of the empirical error on the training data is usually not enough. To get more accurate estimates of the generalization error, the training dataset is split into training and validation datasets. The validation dataset is not used for training of the model, as its sole purpose is to be used for estimation of the generalization error.~\cite{alpaydin:2004:introduction}
+
+The number of labeled training samples is limited in real world machine learning problems. Therefore the size reduction to the training dataset resulting from the use of the validation set is not desirable. K-fold cross validation is a commonly used method for validation without drastic change in the training set size. In k-fold cross validation the training dataset is divided to k ``folds'' one of which is used for validation at a time and the rest for training. Each fold is used in turn for validation the generalization error estimate is the average of the errors for each of the k-folds.~\cite{alpaydin:2004:introduction}
+
+Leave-one-out error is a variation of k-fold error where k is set to one. Leave-one-out error is often computationally prohibitively expensive.
 
 %%% Local Variables:
 %%% mode: latex
