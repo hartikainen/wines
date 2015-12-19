@@ -29,11 +29,11 @@ The TreeBagger supports multiple modes of fitting the decision trees and has man
 The feature selection was conducted by trying out all combinations of three or more features. With the final feature selection the number of trees was varied from 1 to 5000. The TreeBagger built-in out-of-bag error (OOBError) was used for model selection. The OOBError computes the misclassification probability for the classification trees in the training data.
 
 \subsubsection{Extreme Learning Machine}
-neuronit: 11 linear neurons, for linear riippuvuus
-nonlinearty: tansig 0 - 1000
-leave-one-out validation
+Regression with extreme learning machines (ELM) was used for predicting the wine qualities. The ELM was implemented for the experiment by the research group. The ELM implementation is presented in~\ref{appendix-c}.
 
+The ELM implementation has 11 linear neurons for each of the input variables. The hyperbolic tangent sigmoid transfer function, called tansig in matlab~\cite{matlab:2015:tansig}, was used as the nonlinear activation function. ELMs were trained using 0 to 1000 nonlinear neurons. The model selection was conducted using leave-one-out validation.
 
+The data was standardized to zero mean and unit variance for the experiments.
 
 % \begin{table}[H]
 % \caption{My current knowledge of tables}
