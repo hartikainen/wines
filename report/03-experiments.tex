@@ -1,5 +1,32 @@
+In the experiments two prediction tasks were studied. The first task was to classify the vinho verde dataset to red and white wines. In the second task wine qualities were approximated with regression. In this section the conducted experiments are described.
+
 \subsection{Wine Type}
+The wine type prediction was a binary classification task with two classes, namely red and white wines. Two classification methods namel k-nearest-neighbor classifier and support vector machines were studied. A k-nearest-neighbor classifier was implemented from scratch. The Matlab implementation of support vector machines was used. The experiments conducted with the two classifiers are described in the following.
+
+\subsubsection{K-Nearest-Neighbor Classifier}
+A K-Nearest-Neighbor classifier was implemented. The implementation details are given in appendix~\ref{appendix-a}. In the model selection phase different parameters were experimented with and the results were validated using 20-fold cross validation. The only preprocessing step for the data was centering, meaning making the data zero mean and unit variance.
+
+The parameter space for a model as simple as kNN classifier is large. To limit the required work and computation time, only the most influential parameters were experimented with. The number of neighbors $k$ was the most influential parameter. Values of $k$ from 1 to 50 were tested. Another parameter that was experimented with was the distance function. Euclidean distance and Minkowski distance were tested.
+
+\subsubsection{Support Vector Machine}
+Support Vector Machines were studied for the classification task. Matlab has a versatile SVM implementation included in the default distribution~\cite{matlab:2015:fitcsvm}. The Matlab SVM implementation has a multitude of parameters to tune and the total parameter space is huge. To help reduce the number of parameters to be tested, the Matlab classification toolbox was used to find coarse parameters.
+
+Three different kernel functions were used. Quadratic and cubic kernel functions performed poorly compared to the gaussian kernel functions and they were excluded from further experiments. The gaussian kernel functions were studied using by setting the box constraint to 1 and testing the kernel scale $\gamma$ with values in the range 0.1-20.
+
+20-fold cross validation was used for the model selection.
+
 \subsection{Wine Quality}
+\subsubsection{Multivariate Linear Regression}
+10-fold cross validation
+
+\subsubsection{Bootstrap Aggregation with Decision Trees}
+validation: OOBPrediction
+\subsubsection{Extreme Learning Machine}
+neuronit: 11 linear neurons, for linear riippuvuus
+nonlinearty: tansig 0 - 1000
+leave-one-out validation
+
+
 
 % \begin{table}[H]
 % \caption{My current knowledge of tables}
