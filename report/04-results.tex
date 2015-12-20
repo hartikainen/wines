@@ -1,10 +1,42 @@
-\label{sec:results}
-TODO:
-\begin{itemize}
-\item table of results
-\item model parameters
-\item random figures of different model result
-\end{itemize}
+The results for the wine type and wine quality predictions are presented in the Tables \ref{tab:type-results} and \ref{tab:quality-results}, respectively.
+
+\begin{table}[H]
+  \caption{Results for the wine type predictions}
+  \centering
+  \begin{tabular*}{0.48\textwidth}{c|c|c}
+    \textbf{Method} & \textbf{Parameters} & \textbf{Accuracy [\%]} \\
+    \midrule
+    k-NN & Euclidean, k=6 & 94.0 \\
+    SVM  & Gaussian, $\gamma=2.85$ & 99.125 \\
+  \end{tabular*}
+  \label{tab:type-results}
+\end{table}
+
+\begin{table}[H]
+  \caption{Results for the wine quality predictions}
+  \centering
+  \begin{tabular*}{0.48\textwidth}{c|c|c}
+    \textbf{Method} & \textbf{Parameters} & \textbf{Accuracy [\%]} \\
+    \midrule
+    Linear Regression & - & 49.75 \\
+    ELM & l=11, nl=1 & 54.75 \\
+    Bagged Trees & 250 trees & 68.25 \\
+  \end{tabular*}
+  \label{tab:quality-results}
+\end{table}
+
+
+For the wine type prediction task, the k-Nearest Neighbor classifier achieved 94.0\% accuracy, using euclidean distance and k=6 nearest neighbors. The best prediction accuracy for Support Vector Machine, 99.125\%, was achieved using Guassian kernel function with the kernel parameter $\gamma=2.85$.
+
+For the wine quality prediction task, the Bagged Decision Trees outperformed the Extreme Learning MAchine and the linear regression model. The final extreme learning machine consisted of 11 linear neurons, and 1 non-linear neurons, achieving 54.75\% accuracy. The linear regression, with no specific hyperparameters, achieved 49.75\% accuracy, and the Bagged Decision Trees, using 250 trees, achieved 68.25\% accuracy.
+
+
+% ELM: 11 linear, 1 non-linear, accuracy: 0.54750
+% linear regression: accuracy: 0.49750
+% TreeBagger: 68.25, 250 trees
+
+% kNN: k=6, accuracy = 94.0
+% SVM: kernel scale 2.85, gaussian kernel, accuracy = 0.99125
 
 %%% Local Variables:
 %%% mode: latex
