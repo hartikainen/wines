@@ -1,32 +1,20 @@
-clear all; close all;
+function [ testPreds ] = myRegression(trainX, trainY, testX)
+%MYREGRESSION Simple linear regression
 
-training_data_table = readtable('training_data.csv');
-test_data_table     = readtable('test_data.csv');
-
-training_data = table2array(training_data_table(:,1:12));
-test_data = table2array(test_data_table(:,1:12));
-
-N_train = size(training_data, 1);
-data_dim = size(training_data, 2) - 1;
-
-perm = randperm(N_train);
+[Ntrain, dataDim] = size(trainX);
 
 % we are substituting the different degrees with different dimensions of
 % linear regressors
-basis_funs = ones(N_train, (data_dim+1));
-basis_funs(:, 2:end) = training_data(:, 1:data_dim);
+basisFunsTrain = ones(Ntrain, dataDim+1);
+basisFunsTrain(:, 2:end) = trainX;
 
-betas_tmp = basis_funs \ training_data(:, 12);
+betasTmp = basisFunsTrain \ trainY;
 
 % test data
-n_test_data = size(test_data,1);
+Ntest = size(testX, 1);
 
-basis_funs_test = ones(n_test_data, data_dim + 1);
-basis_funs_test(:, 2:end) = test_data(:, 2:data_dim+1);
+basisFunsTest = ones(Ntest, dataDim+1);
+basisFunsTest(:, 2:end) = testX;
 
-test_preds =  round(basis_funs_test * betas_tmp);
-
-f = fopen('output','w');
-fprintf(f,'id,quality\n');
-outputM = [test_data(:,1) test_preds]';
-fprintf(f,'%d,%d\n',outputM);
+testPreds = round(basisFunsTest * betasTmp);
+end
