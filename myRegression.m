@@ -17,4 +17,5 @@ basisFunsTest = ones(Ntest, dataDim+1);
 basisFunsTest(:, 2:end) = testX;
 
 testPreds = round(basisFunsTest * betasTmp);
+
 end
