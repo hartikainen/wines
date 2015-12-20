@@ -1,3 +1,28 @@
+An interesting finding from the quality prediction task was that the distinction between classification and regression is not always clear. A quality score from 1 to 7 was to be predicted on each of the wines. Intuitively predicting the wine qualities seems like a regression task. However classification type learners performed consistently better than regression learners in the task. It seems there is no easily determined continuous relationship in the data features corresponding to the wine quality.
+
+Next the findings on each of the studied algorithms are briefly discussed.
+
+\subsection{Extreme Learning Machine}
+The ELM performance was somewhat weaker than what was expected based on the success of neural network methods in the real world machine learning problems. There are many possible causes for the bad performance. One possibility is that in the ELM experiments the model overfitted the data badly. The overfitting could have been combated with weight regularization which was not implemented for the ELM in this paper.
+
+Implementing ELM is easy compared to other neural network methods since no backpropagation or other learning method is needed for the weights of the nonlinear layer. Therefore ELM was a good find for getting a taste of neural networks even though its performance was suboptimal.
+
+\subsection{K-Nearest Neighbor Classifier}
+K-nearest neighbor classifier performed worse than even very simple support vector machines and thus received little attention for parameter optimization. K-NN is interesting as it is a simple nonparametric method. The amount of training data was possibly too small for the k-NN classifier to perform well.
+
+\subsection{Support Vector Machines}
+Support vector machines performed well in the type prediction task. The final results could have been better if more careful cross-validation scheme was implemented. This was apparent in the competition submission of the team where the SVM type prediction performed very well (1st place) in the public leaderboard but then got much worse results for the rest of the test set.
+
+\subsection{Multivariate Linear Regression}
+Multivariate linear regression was too simple for the given regression task. Considering the structure of the data this should not be surprising.
+
+\subsection{Bootstrap Aggregated Decision Trees}
+TreeBagger yielded the best results in the quality prediction task. Bagging seems to be a powerful method for these types of prediction tasks as it is often used in machine learning competitions and performed well here.
+
+There were some accuracy problems with the TreeBagger as well. The OOBError that was used for evaluation of the models only measures the error in the training set without using validation. Implementing a validation scheme would have benefitted the competition entry.
+
+\subsection{Conclusion}
+Conducting both regression and classification on the Vinho Verde dataset with diverse selection of algorithms was a good way to get introduced in the practice of machine learning. The research group started building intuition to the performance and complexity of the algorithms as well as selecting the right tools for the job.
 
 %%% Local Variables:
 %%% mode: latex
